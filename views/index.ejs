@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NodeJs留言板</title>
+  </head>
+  <body>
+    <h1>NodeJs(express+sequlize)留言板</h1>
+    <h3>发表留言</h3>
+    <form method="post" action="/add_msg">
+        你的名字:&nbsp;&nbsp;<input name="username" type="text"><br/><br/>
+        留言内容:&nbsp;&nbsp;<textarea name="content"></textarea><br/><br/>
+        <input type="submit" value="发表留言"/>
+    </form>
+    <h3>留言版</h3>
+    <hr/>
+    <% for(var i = message.length - 1; i>=0; i--) {%> 
+        <!-- ejs for循环输出留言板内容 -->
+        <div>
+            <b>名字:</b>&nbsp;&nbsp;<%= message[i].username %>
+        </div>
+        <p>            
+            <b>留言内容:</b>&nbsp;&nbsp;
+            <%= message[i].content %>
+        </p>
+        <p style="font-size:12px;color:#888;text-align:right;">
+            <%= message[i].createdAt %>
+            &nbsp;&nbsp;
+            <a href="/edit?id=<%=message[i].id %>">编辑留言</a>
+            &nbsp;&nbsp;
+            <a href="/del_msg?id=<%=message[i].id %>">
+                删除留言
+            </a>
+        </p>
+        <hr>
+    <% } %>
+  </body>
+</html>
